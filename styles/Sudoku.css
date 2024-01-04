@@ -1,0 +1,51 @@
+.sudoku-app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* This will take up the full viewport height */
+}
+
+.sudoku-grid {
+  display: grid;
+  grid-template-columns: repeat(9, 40px); /* creates 9 columns, each taking up 1 fraction of the available space */
+  grid-template-rows: repeat(9, auto); /* creates 9 rows, each height adjusted to content */
+  gap: 2px; /* spacing between cells */
+}
+
+.sudoku-cell {
+  width: 100%; /* ensures cell width fills the column */
+  height: auto; /* adjusts cell height to content */
+  border: 1px solid #000; /* cell border */
+  text-align: center;
+  /* Add padding if needed, but remember it adds to the overall width/height unless box-sizing is set to border-box */
+  padding: 0.5em;
+  box-sizing: border-box; /* ensures padding and border are included in the total width/height */
+}
+
+
+/* Add thick borders to every third cell to delineate 3x3 subgrids */
+.sudoku-grid > div:nth-child(3n),
+.sudoku-grid > div:nth-last-child(-n+3) {
+  border-right: 3px solid #000;
+}
+
+.sudoku-grid > div:nth-child(27n),
+.sudoku-grid > div:nth-child(54n),
+.sudoku-grid > div:nth-child(81n) {
+  border-bottom: 3px solid #000;
+}
+
+/* Style the buttons */
+.button {
+  padding: 10px 20px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+/* Layout adjustments for difficulty levels and solve button */
+.level-buttons,
+.solve-button {
+  display: flex;
+  justify-content: center;
+  margin: 15px 0;
+}
