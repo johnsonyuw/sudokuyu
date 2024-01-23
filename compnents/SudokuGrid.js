@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
-import SudokuCell from './SudokuCell';
+// SudokuGrid.js
+import React, { useState, useEffect } from 'react';
+import SudokuCell from './SudokuCell'; // 确保路径是否正确
 
+const SudokuGrid = ({ sudokuBoard }) => {
+  const [grid, setGrid] = useState(sudokuBoard);
 
-const SudokuGrid = () => {
-  const [grid, setGrid] = useState(Array(9).fill(Array(9).fill(null))); // 9x9 grid initialized with null
+  useEffect(() => {
+    setGrid(sudokuBoard);
+  }, [sudokuBoard]);
 
   const handleCellChange = (value, row, col) => {
-    // Logic to update the grid state when a cell's value changes
-  };
-
-  const solveSudoku = () => {
-    // Logic to solve the Sudoku puzzle
-    console.log("solveSudoku");
+    // 更新格子的值
   };
 
   return (
@@ -19,7 +18,11 @@ const SudokuGrid = () => {
       {grid.map((row, rowIndex) => (
         <div key={rowIndex} className="sudoku-row">
           {row.map((cell, colIndex) => (
-            <SudokuCell key={colIndex} value={cell} onChange={(value) => handleCellChange(value, rowIndex, colIndex)} />
+            <SudokuCell
+              key={`${rowIndex}-${colIndex}`}
+              value={cell}
+              onChange={(value) => handleCellChange(value, rowIndex, colIndex)}
+            />
           ))}
         </div>
       ))}
@@ -27,6 +30,4 @@ const SudokuGrid = () => {
   );
 };
 
-export { SudokuGrid };
-
-
+export default SudokuGrid;

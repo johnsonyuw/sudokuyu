@@ -1,23 +1,19 @@
+// LevelButtons.js
 import React from 'react';
-import {SudokuGrid} from './SudokuGrid';
 
-
-const LevelButtons = (setGrid) => {
+const LevelButtons = ({ onDifficultyChange }) => {
   const handleLevelChange = (event) => {
-    const level = event.target.value;
-    // Logic to change the Sudoku puzzle difficulty level
-    console.log("handleLevelChange:"+level);
-    setGrid(SudokuGrid);
+    onDifficultyChange(event.target.value);
   };
 
   return (
     <div className="level-buttons">
-      <select onChange={handleLevelChange}>
+      <select onChange={handleLevelChange} defaultValue="easy">
         <option value="easy">Easy</option>
         <option value="medium">Medium</option>
-        <option value="medium">Hard</option>
-        <option value="medium">Very Hard</option>
-        {/* Other options for different levels */}
+        <option value="hard">Hard</option>
+        <option value="very-hard">Very Hard</option>
+        {/* 其他难度级别选项 */}
       </select>
     </div>
   );

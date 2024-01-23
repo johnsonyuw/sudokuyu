@@ -1,51 +1,59 @@
+/* Sudoku.css */
 .sudoku-app {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  height: 100vh; /* This will take up the full viewport height */
+  justify-content: center;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  padding: 20px;
 }
 
 .sudoku-grid {
   display: grid;
-  grid-template-columns: repeat(9, 40px); /* creates 9 columns, each taking up 1 fraction of the available space */
-  grid-template-rows: repeat(9, auto); /* creates 9 rows, each height adjusted to content */
-  gap: 2px; /* spacing between cells */
+  grid-template-columns: repeat(9, 40px); /* 设置格子的宽度 */
+  grid-template-rows: repeat(9, 40px); /* 设置格子的高度 */
+  gap: 1px; /* 设置格子之间的间隙 */
+  border: 3px solid #000; /* 最外围边框为黑色加粗线条 */
 }
 
 .sudoku-cell {
-  width: 100%; /* ensures cell width fills the column */
-  height: auto; /* adjusts cell height to content */
-  border: 1px solid #000; /* cell border */
+  background-color: #fff;
+  border: 1px solid #ccc; /* 格子的边框为灰色细线 */
   text-align: center;
-  /* Add padding if needed, but remember it adds to the overall width/height unless box-sizing is set to border-box */
-  padding: 0.5em;
-  box-sizing: border-box; /* ensures padding and border are included in the total width/height */
+  font-size: 20px;
+  line-height: 40px; /* 设置行高以垂直居中文本 */
 }
 
-
-/* Add thick borders to every third cell to delineate 3x3 subgrids */
-.sudoku-grid > div:nth-child(3n),
-.sudoku-grid > div:nth-last-child(-n+3) {
+/* 第3、6列格子右边的边框为黑色加粗线条 */
+.sudoku-grid > :nth-child(3n) {
   border-right: 3px solid #000;
 }
 
-.sudoku-grid > div:nth-child(27n),
-.sudoku-grid > div:nth-child(54n),
-.sudoku-grid > div:nth-child(81n) {
+/* 第3、6行格子底部的边框为黑色加粗线条 */
+.sudoku-grid > :nth-child(27), .sudoku-grid > :nth-child(28), .sudoku-grid > :nth-child(29),
+.sudoku-grid > :nth-child(54), .sudoku-grid > :nth-child(55), .sudoku-grid > :nth-child(56) {
   border-bottom: 3px solid #000;
 }
 
-/* Style the buttons */
-.button {
-  padding: 10px 20px;
-  margin: 10px;
-  cursor: pointer;
+/* 刷新按钮样式，确保不与九宫格重叠 */
+.refresh-button {
+  position: absolute;
+  top: -40px; /* 调整位置以使按钮位于九宫格的右上角外侧 */
+  right: 0;
+  z-index: 10;
+  padding: 5px 10px;
 }
 
-/* Layout adjustments for difficulty levels and solve button */
-.level-buttons,
-.solve-button {
+/* 底部按钮容器样式 */
+.bottom-buttons {
   display: flex;
-  justify-content: center;
-  margin: 15px 0;
+  justify-content: space-between;
+  width: 360px; /* 根据九宫格的宽度调整容器宽度 */
+  margin-top: 10px;
+}
+
+.button {
+  padding: 10px 20px;
+  cursor: pointer;
 }
